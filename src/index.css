@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #060f18;
+    --surface: #0b141d;
+    --surface-elevated: #1a2430;
+    --ink: #eaddff;
+    --ink-dim: rgba(234, 221, 255, 0.5);
+    --accent: #e09062;
+    --accent-glow: rgba(224, 144, 98, 0.3);
+    --neon: #c3f400;
+    --border: rgba(224, 144, 98, 0.15);
+
+    --font-headline: 'Outfit', sans-serif;
+    --font-body: 'Outfit', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .font-headline {
+    font-family: var(--font-headline);
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Custom scrollbars from Variation 5 */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f0a072;
+}
+
+/* Hexagon logo mark */
+.clip-hexagon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Monospace micro labels */
+.micro-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* Clean border style */
+.cupra-border {
+  border: 1px solid var(--border);
+}
+
+.cupra-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.cupra-card-elevated {
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}

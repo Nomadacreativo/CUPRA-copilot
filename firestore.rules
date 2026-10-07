@@ -1,0 +1,69 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidLead(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 128
+        && data.phone is string && data.phone.size() > 0 && data.phone.size() <= 32
+        && data.stage in ['cold', 'warm', 'hot']
+        && data.modelOfInterest is string && data.modelOfInterest.size() > 0 && data.modelOfInterest.size() <= 64
+        && (!('email' in data) || (data.email is string && data.email.size() <= 128))
+        && (!('origin' in data) || (data.origin is string && data.origin.size() <= 64))
+        && (!('notes' in data) || (data.notes is string && data.notes.size() <= 4096))
+        && (!('nextTask' in data) || (data.nextTask is string && data.nextTask.size() <= 512))
+        && (!('suggestedAction' in data) || (data.suggestedAction is string && data.suggestedAction.size() <= 512))
+        && (!('daysInactive' in data) || data.daysInactive is number)
+        && (!('budgetEstimated' in data) || data.budgetEstimated is number)
+        && (!('financingPreference' in data) || (data.financingPreference is string && data.financingPreference.size() <= 64))
+        && (!('clientProfile' in data) || (data.clientProfile is string && data.clientProfile.size() <= 64))
+        && (!('riskOfFreezing' in data) || data.riskOfFreezing is bool)
+        && (!('dateCreated' in data) || (data.dateCreated is string && data.dateCreated.size() <= 64))
+        && (!('lastContactDate' in data) || (data.lastContactDate is string && data.lastContactDate.size() <= 64))
+        && (!('historyTimeline' in data) || data.historyTimeline is list)
+        && (!('ownerId' in data) || (data.ownerId is string && data.ownerId.size() <= 128));
+    }
+
+    // Connection verification document
+    match /test/{docId} {
+      allow read: if true;
+    }
+
+    // Leads Collection for Sales Funnel
+    match /leads/{leadId} {
+      allow read, list: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(leadId) && isValidLead(incoming());
+      allow update: if isSignedIn() && isValidId(leadId) && isValidLead(incoming());
+      allow delete: if isSignedIn() && isValidId(leadId);
+    }
+
+    // User Profile Collection
+    match /users/{userId} {
+      allow read: if isSignedIn() && (request.auth.uid == userId);
+      allow create, update: if isSignedIn() && request.auth.uid == userId
+        && incoming().uid == request.auth.uid
+        && incoming().email is string && incoming().email.size() <= 128;
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+    }
+  }
+}

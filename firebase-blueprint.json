@@ -1,0 +1,133 @@
+{
+  "entities": {
+    "Lead": {
+      "title": "Lead",
+      "description": "Prospecto automotriz en el funnel de ventas de CUPRA",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identificador único del lead"
+        },
+        "name": {
+          "type": "string",
+          "description": "Nombre completo del cliente",
+          "maxLength": 128
+        },
+        "phone": {
+          "type": "string",
+          "description": "Teléfono o WhatsApp del cliente",
+          "maxLength": 32
+        },
+        "email": {
+          "type": "string",
+          "description": "Correo electrónico del cliente",
+          "maxLength": 128
+        },
+        "origin": {
+          "type": "string",
+          "description": "Canal de captación",
+          "maxLength": 64
+        },
+        "stage": {
+          "type": "string",
+          "enum": ["cold", "warm", "hot"],
+          "description": "Etapa comercial en el embudo"
+        },
+        "modelOfInterest": {
+          "type": "string",
+          "description": "Modelo de la gama CUPRA de interés",
+          "maxLength": 64
+        },
+        "dateCreated": {
+          "type": "string",
+          "description": "Fecha de registro"
+        },
+        "lastContactDate": {
+          "type": "string",
+          "description": "Fecha del último contacto"
+        },
+        "daysInactive": {
+          "type": "number",
+          "description": "Días transcurridos sin contacto"
+        },
+        "budgetEstimated": {
+          "type": "number",
+          "description": "Presupuesto o precio base estimado"
+        },
+        "financingPreference": {
+          "type": "string",
+          "enum": ["leasing", "unique_flex", "credito", "contado"],
+          "description": "Preferencia de esquema financiero"
+        },
+        "clientProfile": {
+          "type": "string",
+          "enum": ["corporativo", "performance", "tech", "familiar"],
+          "description": "Tipología y perfil psicológico del comprador"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Notas y bitácora del asesor",
+          "maxLength": 4096
+        },
+        "nextTask": {
+          "type": "string",
+          "description": "Siguiente tarea o recordatorio",
+          "maxLength": 512
+        },
+        "riskOfFreezing": {
+          "type": "boolean",
+          "description": "Indicador si el lead está en riesgo de enfriarse"
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "ID del asesor propietario del lead"
+        }
+      },
+      "required": ["name", "phone", "stage", "modelOfInterest"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Perfil del asesor comercial registrado",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "UID de Firebase Authentication"
+        },
+        "email": {
+          "type": "string",
+          "description": "Correo institucional o de cuenta"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Nombre del asesor"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Avatar del asesor"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["advisor", "admin"],
+          "description": "Rol en la agencia"
+        }
+      },
+      "required": ["uid", "email"]
+    }
+  },
+  "firestore": {
+    "/leads/{leadId}": {
+      "schema": {
+        "$ref": "Lead"
+      },
+      "description": "Colección de prospectos y leads comerciales"
+    },
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "UserProfile"
+      },
+      "description": "Perfiles de asesores de ventas"
+    }
+  }
+}
