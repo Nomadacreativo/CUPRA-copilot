@@ -21,8 +21,8 @@ export const WhatsAppCopywriter: React.FC<WhatsAppCopywriterProps> = ({
   const [selectedLeadId, setSelectedLeadId] = useState<string>(leads[0]?.id || '');
   const selectedLead = leads.find((l) => l.id === selectedLeadId) || leads[0];
 
-  const [clientName, setClientName] = useState(selectedLead?.name || '');
-  const [clientPhone, setClientPhone] = useState(selectedLead?.phone || '');
+  const [clientName, setClientName] = useState(selectedLead?.name || 'Carlos Villarreal');
+  const [clientPhone, setClientPhone] = useState(selectedLead?.phone || '+525541928371');
   const [vehicleModel, setVehicleModel] = useState(selectedLead?.modelOfInterest || 'CUPRA Formentor VZ');
   const [profile, setProfile] = useState<ClientProfile>(selectedLead?.clientProfile || 'corporativo');
   

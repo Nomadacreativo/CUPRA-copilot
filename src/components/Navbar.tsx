@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 import { Lead } from '../types';
 import { useAuth } from '../context/AuthContext';
-import { CupraLogo } from './CupraLogo';
 
 interface NavbarProps {
   activeTab: 'crm' | 'copilot' | 'showroom' | 'financing' | 'testdrive' | 'whatsapp';
@@ -37,9 +36,9 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Brand Cluster */}
       <div className="flex items-center justify-between w-full md:w-auto">
         <div className="flex items-center gap-3.5">
-          {/* Official CUPRA Tribal Emblem */}
-          <div className="w-11 h-11 bg-gradient-to-br from-[#1a2430] to-[#060f18] border border-[#e09062]/30 rounded-[6px] flex items-center justify-center p-2 shadow-lg shadow-[#e09062]/10 group hover:border-[#e09062] transition-colors">
-            <CupraLogo className="w-full h-full" withGlow />
+          {/* Hexagonal Logo Mark */}
+          <div className="w-10 h-10 bg-[#e09062] clip-hexagon flex items-center justify-center text-[#060f18] font-black text-lg select-none shadow-md shadow-[#e09062]/20">
+            ▲
           </div>
 
           <div className="brand-text">

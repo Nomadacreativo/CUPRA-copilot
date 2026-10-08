@@ -13,7 +13,7 @@
     --border: rgba(224, 144, 98, 0.15);
 
     --font-headline: 'Outfit', sans-serif;
-    --font-body: 'Poppins', sans-serif;
+    --font-body: 'Outfit', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
 
@@ -49,14 +49,9 @@
   background: #f0a072;
 }
 
-.brand-logo {
-  width: 120px;
-  height: 40px;
-  background-image: url('./assets/logo_Cupra.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  display: inline-block;
+/* Hexagon logo mark */
+.clip-hexagon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
 /* Monospace micro labels */

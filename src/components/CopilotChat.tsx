@@ -261,7 +261,7 @@ Reintenta la consulta o selecciona un prospecto de la lista.`,
           onClick={() => handleQuickCommandClick(
             activeLeadContext 
               ? `/followup ${activeLeadContext.name} ${activeLeadContext.daysInactive} días sin contacto`
-              : '/followup Prospecto 3 días sin contacto'
+              : '/followup Mariana Garza 4 días sin contacto'
           )}
           className="px-2.5 py-1 rounded-[3px] bg-[#1a2430] hover:border-[#e09062] text-xs text-[#eaddff] border border-white/5 whitespace-nowrap active:scale-95 transition-all font-['JetBrains_Mono'] text-[0.7rem]"
         >
@@ -269,7 +269,7 @@ Reintenta la consulta o selecciona un prospecto de la lista.`,
         </button>
 
         <button
-          onClick={() => handleQuickCommandClick('/nuevo-lead [Nombre] [Modelo CUPRA] [Origen]')}
+          onClick={() => handleQuickCommandClick('/nuevo-lead Carlos Mendoza CUPRA Tavascan Web')}
           className="px-2.5 py-1 rounded-[3px] bg-[#1a2430] hover:border-[#e09062] text-xs text-[#eaddff] border border-white/5 whitespace-nowrap active:scale-95 transition-all font-['JetBrains_Mono'] text-[0.7rem]"
         >
           /nuevo-lead [Nombre]

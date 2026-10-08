@@ -44,14 +44,14 @@ export interface CupraVehicle {
   id: string;
   name: string;
   tagline: string;
-  category: string;
+  category: 'Crossover Coupé' | 'Hot Hatch' | 'Performance SUV' | '100% Eléctrico SUV' | '100% Eléctrico Hatch' | 'Electrificado e-HYBRID';
   engine: string;
   hp: number;
   torqueNm: number;
   zeroToHundred: string;
   topSpeed: number;
-  traction: string;
-  transmission: string;
+  traction: '4Drive Integral' | 'Delantera' | 'Trasera (RWD)' | 'Dual Motor e-4Drive';
+  transmission: 'DSG 7 vel.' | 'Transmisión 1 vel.' | 'e-DSG 6 vel.';
   startingPrice: number;
   monthlyEstimateFrom: number;
   fuelOrRange: string;
@@ -60,9 +60,6 @@ export interface CupraVehicle {
   competitors: CompetitorBenchmark[];
   soundTrackUrl?: string;
   imageAccentColor: string;
-  imageUrl?: string;
-  galleryImages?: string[];
-  isCustom?: boolean;
 }
 
 export interface StructuredCopilotResponse {
