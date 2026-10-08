@@ -19,7 +19,7 @@ export const QuickCommandsModal: React.FC<QuickCommandsModalProps> = ({
 
   const [activeCommand, setActiveCommand] = useState<string>('comparar');
 
-  const [leadName, setLeadName] = useState('Eduardo Morales');
+  const [leadName, setLeadName] = useState('');
   const [leadCar, setLeadCar] = useState('CUPRA Formentor VZ');
   const [leadOrigin, setLeadOrigin] = useState('Instagram');
 
@@ -28,21 +28,21 @@ export const QuickCommandsModal: React.FC<QuickCommandsModalProps> = ({
 
   const [testDriveModel, setTestDriveModel] = useState('CUPRA Formentor VZ');
 
-  const [followupClient, setFollowupClient] = useState('Mariana Garza');
-  const [followupDays, setFollowupDays] = useState('4');
+  const [followupClient, setFollowupClient] = useState('');
+  const [followupDays, setFollowupDays] = useState('3');
 
   const [objectionType, setObjectionType] = useState('Tasa de interés bancaria vs Arrendamiento');
 
   const getCommandString = () => {
     switch (activeCommand) {
       case 'nuevo-lead':
-        return `/nuevo-lead ${leadName} ${leadCar} ${leadOrigin}`;
+        return `/nuevo-lead ${leadName || 'Prospecto'} ${leadCar} ${leadOrigin}`;
       case 'comparar':
         return `/comparar ${compareCupra} vs ${compareRival}`;
       case 'script-testdrive':
         return `/script-testdrive ${testDriveModel}`;
       case 'followup':
-        return `/followup ${followupClient} ${followupDays} días sin contacto`;
+        return `/followup ${followupClient || 'Prospecto'} ${followupDays} días sin contacto`;
       case 'objecion':
         return `/objecion ${objectionType}`;
       default:

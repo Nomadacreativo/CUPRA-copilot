@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { Lead, LeadStage } from '../types';
 import { createWhatsAppUrl } from '../utils/formatters';
+import { CupraLogo } from './CupraLogo';
 
 interface LeadDetailDrawerProps {
   lead: Lead | null;
@@ -42,8 +43,8 @@ export const LeadDetailDrawer: React.FC<LeadDetailDrawerProps> = ({
           {/* Header */}
           <div className="flex items-center justify-between pb-4 border-b border-white/5">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 bg-[#e09062] clip-hexagon flex items-center justify-center font-bold text-[#060f18] text-sm">
-                ▲
+              <div className="w-9 h-9 bg-gradient-to-br from-[#1a2430] to-[#060f18] border border-[#e09062]/30 rounded-[4px] flex items-center justify-center p-1.5 shadow-md">
+                <CupraLogo className="w-full h-full" />
               </div>
               <div>
                 <h3 className="font-['Outfit'] font-bold text-base text-white uppercase tracking-wide">{lead.name}</h3>
